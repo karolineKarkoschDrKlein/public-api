@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: Kooperationsveträge
+  version: '1.0'
+  description: Kooperationsveträge
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /cooperation-contracts:
+    get:
+      summary: Find all
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CooperationContract'
+      operationId: get-cooperation-contracts
+      description: Find all cooperation contracts for your company. When you specify a contractingPartner you will get all cooperation-contracts where the contractingPartner is on one side of the contract.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      tags:
+        - CooperationContract
+    post:
+      summary: Create
+      operationId: post-cooperation-contracts
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CooperationContract'
+      description: ''
+      tags:
+        - CooperationContract
+  '/cooperation-contracts/{contractId}':
+    parameters:
+      - type: string
+        name: contractId
+        in: path
+        required: true
+    get:
+      summary: Find one
+      tags:
+        - CooperationContract
+      responses: {}
+      operationId: get-cooperation-contracts-contractId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CooperationContract'
+    put:
+      summary: Update
+      operationId: put-cooperation-contracts-contractId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - CooperationContract
+    patch:
+      summary: Patch
+      operationId: patch-cooperation-contracts-contractId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - CooperationContract
+    delete:
+      summary: Delete
+      operationId: delete-cooperation-contracts-contractId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - CooperationContract
+components:
+  schemas:
+    CooperationContract:
+      title: CooperationContract
+      type: object
+      properties:
+        id:
+          type: string
+      x-tags:
+        - Models
+  securitySchemes: {}
