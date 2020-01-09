@@ -11,3 +11,4 @@ properties:
     type: string
   username:
     type: string
+description: Ein Mitarbeiter einer Firma auf der Plattform

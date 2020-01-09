@@ -37,3 +37,4 @@ properties:
         type: integer
       number:
         type: integer
+description: Abstraktes Modell einer Liste mit seitenweiser Darstellung der Ressourcen

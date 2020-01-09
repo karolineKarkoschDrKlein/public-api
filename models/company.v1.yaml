@@ -1,7 +1,10 @@
-title: company
+title: Company
 type: object
+description: 'Eine Firma auf der Dr.Klein Plattform. Sie entspricht technisch einem Tenant der Plattform und begrenzt die Ressourcen auf der Public Api, auf die mit einem Token zugegriffen werden kann.'
 properties:
   id:
     type: string
   name:
+    type: string
+  slug:
     type: string
