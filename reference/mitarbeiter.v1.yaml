@@ -12,12 +12,16 @@ consumes:
 paths:
   /employees:
     get:
-      summary: Your GET endpoint
+      summary: Find all
       tags:
         - Employees
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Employee'
       operationId: get-employees
-      description: ''
+      description: Find all description
 definitions:
   Employee:
     title: Employee
