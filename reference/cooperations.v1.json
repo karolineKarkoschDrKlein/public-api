@@ -1,0 +1,68 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Kooperationen",
+    "version": "1.0",
+    "contact": {
+      "name": "Timo Lange",
+      "email": "timo.lange@drklein.de"
+    }
+  },
+  "host": "api.drklein-plattform.de",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/cooperations": {
+      "get": {
+        "summary": "Find all cooperations",
+        "tags": [
+          "Cooperations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cooperation"
+              }
+            }
+          }
+        },
+        "operationId": "get-cooperations",
+        "description": "Find all cooperations for your company."
+      }
+    }
+  },
+  "definitions": {
+    "Cooperation": {
+      "title": "Cooperation",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "description": "A cooperation between employees or between companies or both."
+    }
+  },
+  "basePath": "/api",
+  "securityDefinitions": {
+    "Bearer Token": {
+      "type": "oauth2",
+      "flow": "application",
+      "scopes": {
+        "openid": ""
+      },
+      "description": "",
+      "tokenUrl": "https://id.drklein-plattform.de/auth/oauth/token"
+    }
+  }
+}
