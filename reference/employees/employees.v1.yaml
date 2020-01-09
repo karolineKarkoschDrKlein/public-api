@@ -20,5 +20,9 @@ components:
       properties:
         id:
           type: string
-      x-tags:
-        - Models
+    CooperationPartner:
+      title: CooperationPartner
+      type: object
+      properties:
+        id:
+          type: string

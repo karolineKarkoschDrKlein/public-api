@@ -88,6 +88,4 @@ components:
       properties:
         id:
           type: string
-      x-tags:
-        - Models
   securitySchemes: {}
