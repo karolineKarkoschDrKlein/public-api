@@ -1,14 +1,12 @@
 title: Cooperation
 type: object
-properties:
-  id:
-    type: string
-  creatingEmployee:
-    type: string
-  creatingCompany:
-    type: string
-  partnerEmployee:
-    type: string
-  partnerCompany:
-    type: string
 description: 'Das Cooperation Objekt bezeichnet die Zusammenarbeit zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander. Es existiert immer nur ein "creating"-Objekt und ein "partner"-Objekt an einer Cooperation.'
+properties:
+  creatingEmployee:
+    $ref: ./employee.v1.yaml
+  creatingCompany:
+    $ref: ./company.v1.yaml
+  partnerEmployee:
+    $ref: ./employee.v1.yaml
+  partnerCompany:
+    $ref: ./company.v1.yaml

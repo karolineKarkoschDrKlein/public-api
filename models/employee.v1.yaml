@@ -1,0 +1,13 @@
+title: Employee
+type: object
+properties:
+  id:
+    type: string
+  externalKey:
+    type: string
+  fristName:
+    type: string
+  lastName:
+    type: string
+  username:
+    type: string

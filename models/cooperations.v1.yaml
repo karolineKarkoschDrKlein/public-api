@@ -1,0 +1,35 @@
+title: Cooperations
+type: object
+properties:
+  page:
+    $ref: ./page.v1.yaml
+  _links:
+    type: object
+    properties:
+      first:
+        type: object
+        properties:
+          href:
+            type: string
+      self:
+        type: object
+        properties:
+          href:
+            type: string
+      next:
+        type: object
+        properties:
+          href:
+            type: string
+      last:
+        type: object
+        properties:
+          href:
+            type: string
+  _embedded:
+    type: object
+    properties:
+      cooperations:
+        type: array
+        items:
+          $ref: ./cooperation.v1.yaml

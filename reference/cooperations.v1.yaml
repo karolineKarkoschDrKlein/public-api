@@ -22,11 +22,9 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: ../models/cooperation.v1.yaml
+                $ref: ../models/cooperations.v1.yaml
       operationId: get-cooperations
-      description: Zeige alle Cooperationen der Firma oder filtere sie nach einer beteiligten Seite.
+      description: Zeige alle Kooperationen der Firma oder filtere sie nach einem Mitarbeiter oder einer Firma auf einer beliebigen Vertragsseite.
       parameters:
         - schema:
             type: string

@@ -1,0 +1,39 @@
+title: PagedCollection
+type: object
+properties:
+  _embedded:
+    type: object
+  _links:
+    type: object
+    properties:
+      first:
+        type: object
+        properties:
+          href:
+            type: string
+      self:
+        type: object
+        properties:
+          href:
+            type: string
+      next:
+        type: object
+        properties:
+          href:
+            type: string
+      last:
+        type: object
+        properties:
+          href:
+            type: string
+  page:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      totalElements:
+        type: integer
+      size:
+        type: integer
+      number:
+        type: integer
