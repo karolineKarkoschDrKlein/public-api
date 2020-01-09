@@ -3,3 +3,12 @@ type: object
 properties:
   id:
     type: string
+  creatingEmployee:
+    type: string
+  creatingCompany:
+    type: string
+  partnerEmployee:
+    type: string
+  partnerCompany:
+    type: string
+description: 'Das Cooperation Objekt bezeichnet die Zusammenarbeit zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander. Es existiert immer nur ein "creating"-Objekt und ein "partner"-Objekt an einer Cooperation.'

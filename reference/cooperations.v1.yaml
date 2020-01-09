@@ -13,7 +13,7 @@ servers:
 paths:
   /cooperations:
     get:
-      summary: Find all cooperations
+      summary: Find all
       tags:
         - Cooperations
       responses:
@@ -26,6 +26,24 @@ paths:
                 items:
                   $ref: ../models/cooperation.v1.yaml
       operationId: get-cooperations
+      description: Zeige alle Cooperationen der Firma oder filtere sie nach einer beteiligten Seite.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: contractingEmployeeId
+        - schema:
+            type: string
+          in: query
+          name: contractingCompanyId
+        - schema:
+            type: string
+          in: query
+          name: contractingEmployee.externalKey
+        - schema:
+            type: string
+          in: query
+          name: contractingCompany.externalKey
 components:
   schemas: {}
   securitySchemes:
