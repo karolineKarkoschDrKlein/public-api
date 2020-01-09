@@ -3,8 +3,13 @@ info:
   title: Kooperationen
   version: '1.0'
   description: Kooperationen
+  contact:
+    name: ContactName
+    email: ContactEmail@drklein.de
+  termsOfService: Terms of Service
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://api.drklein-plattform.de'
+    description: PROD
 paths:
   /cooperations:
     get:
@@ -23,3 +28,13 @@ paths:
       operationId: get-cooperations
 components:
   schemas: {}
+  securitySchemes:
+    Dr.Klein Plattform ID Service:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://id.drklein-plattform.de/auth/token'
+          refreshUrl: ''
+          scopes:
+            openid: ''
+      description: ''
