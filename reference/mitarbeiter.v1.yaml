@@ -2,12 +2,26 @@ swagger: '2.0'
 info:
   title: Mitarbeiter
   version: '1.0'
-host: localhost:3000
+host: 'localhost:3000'
 schemes:
   - http
 produces:
   - application/json
 consumes:
   - application/json
-paths: {}
-definitions: {}
+paths:
+  /employees:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-employees
+definitions:
+  Employee:
+    title: Employee
+    type: object
+    properties:
+      id:
+        type: string
+    x-tags:
+      - Mitarbeiter
