@@ -2,7 +2,16 @@ title: Cooperations
 type: object
 properties:
   page:
-    $ref: ./page.v1.yaml
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      totalElements:
+        type: integer
+      size:
+        type: integer
+      number:
+        type: integer
   _links:
     type: object
     properties:
