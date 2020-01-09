@@ -6,7 +6,8 @@
     "contact": {
       "name": "Timo Lange",
       "email": "timo.lange@drklein.de"
-    }
+    },
+    "description": "Finde alle Kooperationen zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander."
   },
   "host": "api.drklein-plattform.de",
   "schemes": [
@@ -33,6 +34,9 @@
               "items": {
                 "$ref": "#/definitions/Cooperation"
               }
+            },
+            "examples": {
+              "example-1": {}
             }
           }
         },
@@ -53,7 +57,6 @@
       "description": "A cooperation between employees or between companies or both."
     }
   },
-  "basePath": "/api",
   "securityDefinitions": {
     "Bearer Token": {
       "type": "oauth2",

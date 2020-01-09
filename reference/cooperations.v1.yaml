@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Kooperationen
+  version: '1.0'
+  description: Kooperationen
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /cooperations:
+    get:
+      summary: Find all cooperations
+      tags:
+        - Cooperations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/cooperation.v1.yaml
+      operationId: get-cooperations
+components:
+  schemas: {}
