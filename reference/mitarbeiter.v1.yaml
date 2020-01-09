@@ -13,9 +13,11 @@ paths:
   /employees:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Employees
       responses: {}
       operationId: get-employees
+      description: ''
 definitions:
   Employee:
     title: Employee
@@ -23,5 +25,3 @@ definitions:
     properties:
       id:
         type: string
-    x-tags:
-      - Mitarbeiter
