@@ -1,0 +1,15 @@
+title: partner.v1.yaml
+type: object
+description: Ein Partner repräsentiert einen Mitarbeiter in einem bestimmten Büro.
+properties:
+  id:
+    type: string
+  externalKey:
+    type: string
+  _embedded:
+    type: object
+    properties:
+      office:
+        $ref: ./office.v1.yaml
+      employee:
+        $ref: ./employee.v1.yaml

@@ -31,19 +31,11 @@ paths:
         - schema:
             type: string
           in: query
-          name: contractingEmployeeId
+          name: contractingPartnerId
         - schema:
             type: string
           in: query
-          name: contractingCompanyId
-        - schema:
-            type: string
-          in: query
-          name: contractingEmployee.externalKey
-        - schema:
-            type: string
-          in: query
-          name: contractingCompany.externalKey
+          name: contractingPartner.externalKey
 components:
   schemas: {}
   securitySchemes:

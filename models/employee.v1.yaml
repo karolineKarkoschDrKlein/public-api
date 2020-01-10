@@ -1,14 +1,11 @@
-title: Employee
+title: employee.v1.yaml
 type: object
 properties:
   id:
     type: string
-  externalKey:
-    type: string
-  fristName:
+  firstName:
     type: string
   lastName:
     type: string
-  username:
+  externalKey:
     type: string
-description: Ein Mitarbeiter einer Firma auf der Plattform
