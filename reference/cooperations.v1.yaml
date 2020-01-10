@@ -2,7 +2,9 @@ openapi: 3.0.0
 info:
   title: Kooperationen
   version: '1.0'
-  description: Kooperationen
+  description: |-
+    Eine Kooperation bezeichnet die Zusammenarbeit zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
+    Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Mitarbeiters oder einer Firma abgefragt werden.
   contact:
     name: ContactName
     email: ContactEmail@drklein.de
