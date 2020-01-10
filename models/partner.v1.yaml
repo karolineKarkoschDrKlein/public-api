@@ -1,4 +1,4 @@
-title: partner.v1.yaml
+title: Partner
 type: object
 description: Ein Partner repräsentiert einen Mitarbeiter in einem bestimmten Büro.
 properties:

@@ -1,4 +1,4 @@
-title: office.v1.yaml
+title: Office
 type: object
 properties:
   id:
