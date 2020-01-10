@@ -2,11 +2,16 @@ title: Cooperation
 type: object
 description: 'Eine Kooperation bezeichnet die Zusammenarbeit zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander. Es existiert immer nur ein "creating"-Objekt und ein "partner"-Objekt an einer Cooperation.'
 properties:
-  creatingEmployee:
-    $ref: ./employee.v1.yaml
-  creatingCompany:
-    $ref: ./company.v1.yaml
-  partnerEmployee:
-    $ref: ./employee.v1.yaml
-  partnerCompany:
-    $ref: ./company.v1.yaml
+  _embedded:
+    type: object
+    properties:
+      partnerCompany:
+        $ref: ./company.v1.yaml
+      partnerEmployee:
+        $ref: ./employee.v1.yaml
+      creatingCompany:
+        $ref: ./company.v1.yaml
+      creatingEmployee:
+        $ref: ./employee.v1.yaml
+  _links:
+    type: object
