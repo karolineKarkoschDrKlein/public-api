@@ -3,11 +3,11 @@ info:
   title: Kooperationen
   version: '1.0'
   description: |-
-    Eine Kooperation bezeichnet die Zusammenarbeit zwischen Mitarbeitern und Firmen oder Mitarbeitern und Firmen untereinander. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
-    Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Mitarbeiters oder einer Firma abgefragt werden.
+    Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
+    Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden.
   contact:
-    name: ContactName
-    email: ContactEmail@drklein.de
+    name: Timo Lange
+    email: das-produkt@drklein.de
   termsOfService: Terms of Service
 servers:
   - url: 'https://api.drklein-plattform.de'
@@ -26,7 +26,7 @@ paths:
               schema:
                 $ref: ../models/cooperations.v1.yaml
       operationId: get-cooperations
-      description: Zeige alle Kooperationen der Firma oder filtere sie nach einem Mitarbeiter oder einer Firma auf einer beliebigen Vertragsseite.
+      description: Zeige alle Kooperationen der Firma oder filtere sie nach einem Partner.
       parameters:
         - schema:
             type: string
