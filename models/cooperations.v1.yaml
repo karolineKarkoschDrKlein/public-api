@@ -1,5 +1,6 @@
 title: Cooperations
 type: object
+description: Resource einer Liste aller Kooperationen
 properties:
   page:
     type: object
@@ -42,4 +43,3 @@ properties:
         type: array
         items:
           $ref: ./cooperation.v1.yaml
-description: Resource einer Liste aller Kooperationen

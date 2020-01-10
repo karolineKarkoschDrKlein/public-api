@@ -24,7 +24,6 @@ paths:
               schema:
                 $ref: ../models/cooperations.v1.yaml
       operationId: get-cooperations
-      description: Zeige alle Kooperationen der Firma oder filtere sie nach einem Mitarbeiter oder einer Firma auf einer beliebigen Vertragsseite.
       parameters:
         - schema:
             type: string
@@ -42,6 +41,7 @@ paths:
             type: string
           in: query
           name: contractingCompany.externalKey
+      description: Zeige alle Kooperationen der Firma oder filtere sie nach einem Mitarbeiter oder einer Firma auf einer beliebigen Vertragsseite.
 components:
   schemas: {}
   securitySchemes:
