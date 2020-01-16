@@ -4,6 +4,11 @@ description: Resource einer Liste aller Kooperationen
 properties:
   page:
     type: object
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
     properties:
       totalPages:
         type: integer
@@ -15,6 +20,8 @@ properties:
         type: integer
   _links:
     type: object
+    required:
+      - self
     properties:
       first:
         type: object
@@ -23,6 +30,8 @@ properties:
             type: string
       self:
         type: object
+        required:
+          - href
         properties:
           href:
             type: string
@@ -43,3 +52,6 @@ properties:
         type: array
         items:
           $ref: ./cooperation.v1.yaml
+required:
+  - page
+  - _links

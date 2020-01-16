@@ -1,6 +1,6 @@
-title: Partner
+title: Agent
 type: object
-description: Ein Partner repräsentiert einen Mitarbeiter in einem bestimmten Büro.
+description: Ein Agent repräsentiert einen Mitarbeiter in einem bestimmten Büro.
 properties:
   id:
     type: string
@@ -13,3 +13,8 @@ properties:
         $ref: ./office.v1.yaml
       employee:
         $ref: ./employee.v1.yaml
+    required:
+      - office
+      - employee
+required:
+  - id

@@ -4,8 +4,13 @@ description: Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partne
 properties:
   _embedded:
     type: object
+    required:
+      - partner
+      - creatingPartner
     properties:
       partner:
         $ref: ./partner.v1.yaml
       creatingPartner:
         $ref: ./partner.v1.yaml
+required:
+  - _embedded

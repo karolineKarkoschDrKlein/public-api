@@ -1,5 +1,6 @@
 title: Employee
 type: object
+description: Ein Mitarbeiter einer Firma innerhalb der Dr. Klein Plattform
 properties:
   id:
     type: string
@@ -9,4 +10,5 @@ properties:
     type: string
   externalKey:
     type: string
-description: Ein Mitarbeiter einer Firma innerhalb der Dr. Klein Plattform
+required:
+  - id

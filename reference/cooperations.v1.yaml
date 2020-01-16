@@ -1,16 +1,14 @@
 openapi: 3.0.0
 info:
-  title: Kooperationen
+  title: Dr. Klein Plattform API
   version: '1.0'
-  description: |-
-    Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
-    Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden.
+  description: "# Nutzung der API\nJeder Endpunkt auf der api enthält (mit \\{companyDomain\\} im Pfad vermerkt) die Domain der Firma, auf dessen Daten zugegriffen werden soll. Jedes Token wird für eine bestimmte Firma ausgestellt. Die Domain von Dr. Klein ist beispielsweise \"drklein\", also würde der Pfad für die Kooperationspartner auf dev so aussehen:\n\nhttps://api.drklein-plattform.de/drklein/v1/cooperations\n\n# Kooperation\n\nEine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.\nÜber diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden."
   contact:
     name: Timo Lange
     email: das-produkt@drklein.de
   termsOfService: Terms of Service
 servers:
-  - url: 'https://api.drklein-plattform.de'
+  - url: 'https://api.drklein-plattform.de/{companyDomain}'
     description: PROD
 paths:
   /cooperations:
