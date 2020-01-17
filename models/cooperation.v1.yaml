@@ -9,8 +9,8 @@ properties:
       - creatingPartner
     properties:
       partner:
-        $ref: ./partner.v1.yaml
+        $ref: ./agent.v1.yaml
       creatingPartner:
-        $ref: ./partner.v1.yaml
+        $ref: ./agent.v1.yaml
 required:
   - _embedded
