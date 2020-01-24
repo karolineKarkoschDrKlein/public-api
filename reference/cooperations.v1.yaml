@@ -22,7 +22,7 @@ servers:
   - url: 'https://api.staging.drklein-plattform.de/{companySlug}/v1'
     description: STAGING
 paths:
-  /cooperations:
+  /v1/cooperations:
     get:
       summary: Find all
       tags:
@@ -45,6 +45,7 @@ paths:
             type: string
           in: query
           name: contractingPartner.externalKey
+    parameters: []
 components:
   schemas: {}
   securitySchemes:
