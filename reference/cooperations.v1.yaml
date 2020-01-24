@@ -17,9 +17,9 @@ info:
     email: das-produkt@drklein.de
   termsOfService: Terms of Service
 servers:
-  - url: 'https://api.drklein-plattform.de/{companySlug}/v1'
+  - url: 'https://api.drklein-plattform.de/{companySlug}'
     description: PROD
-  - url: 'https://api.staging.drklein-plattform.de/{companySlug}/v1'
+  - url: 'https://api.staging.drklein-plattform.de/{companySlug}'
     description: STAGING
 paths:
   /v1/cooperations:
