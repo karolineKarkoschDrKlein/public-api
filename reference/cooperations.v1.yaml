@@ -46,6 +46,34 @@ paths:
           in: query
           name: contractingPartner.externalKey
     parameters: []
+  /v1/agents:
+    get:
+      summary: Find all agents
+      tags:
+        - Agenten
+      responses: {}
+      operationId: get-v1-agents
+      description: Zeige alle Agenten innerhalb der Firma
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  '/v1/agents/{agentId}/partner-agents':
+    parameters:
+      - schema:
+          type: string
+        name: agentId
+        in: path
+        required: true
+    get:
+      summary: Find all partners
+      tags:
+        - Agenten
+      responses: {}
+      operationId: get-v1-agents-agentId-partner-agents
+      description: 'Zeige alle Agenten, die eine Kooperation mit dem im Pfad angegebenen Agenten haben.'
 components:
   schemas: {}
   securitySchemes:
