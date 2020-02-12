@@ -1,4 +1,4 @@
-title: agents.v1
+title: Agents
 type: object
 description: Liste von Agenten
 properties:
@@ -42,4 +42,4 @@ properties:
       agents:
         type: array
         items:
-          $ref: ''
+          $ref: ./agent.v1.yaml
