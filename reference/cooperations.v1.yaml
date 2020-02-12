@@ -12,6 +12,10 @@ info:
 
     Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
     Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden.
+
+    # Agenten
+
+    Agenten sind Mitarbeiter einer Firma, die in einem Büro Kunden betreuen. Dies können sowohl Makler als auch Berater oder sogar Kundenbetreuer für andere Leistungen sein. Sie empfangen Leads und verwalten Ihre Kunden. Optional können sie dazu Vorgänge in der Plattform oder in externen Systemen wie z.B. Europace anlegen.
   contact:
     name: Timo Lange
     email: das-produkt@drklein.de
@@ -58,8 +62,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
+              $ref: ../models/agents.v1.yaml
   '/v1/agents/{agentId}/partner-agents':
     parameters:
       - schema:
@@ -68,12 +71,17 @@ paths:
         in: path
         required: true
     get:
-      summary: Find all partners
+      summary: Find all partner agents
       tags:
         - Agenten
       responses: {}
       operationId: get-v1-agents-agentId-partner-agents
       description: 'Zeige alle Agenten, die eine Kooperation mit dem im Pfad angegebenen Agenten haben.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/agents.v1.yaml
 components:
   schemas: {}
   securitySchemes:
