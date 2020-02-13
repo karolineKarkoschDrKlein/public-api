@@ -1,0 +1,47 @@
+title: Agents
+type: object
+description: Liste von Agenten
+properties:
+  page:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      totalElements:
+        type: integer
+      size:
+        type: integer
+      number:
+        type: integer
+  _links:
+    type: object
+    properties:
+      first:
+        type: object
+        properties:
+          href:
+            type: string
+      self:
+        type: object
+        properties:
+          href:
+            type: string
+      next:
+        type: object
+        properties:
+          href:
+            type: string
+      last:
+        type: object
+        properties:
+          href:
+            type: string
+  _embedded:
+    type: object
+    properties:
+      agents:
+        type: array
+        items:
+          $ref: ./agent.v1.yaml
+x-examples:
+  example-1: {}

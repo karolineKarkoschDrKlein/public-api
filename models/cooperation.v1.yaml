@@ -12,5 +12,7 @@ properties:
         $ref: ./agent.v1.yaml
       creatingPartner:
         $ref: ./agent.v1.yaml
+  id:
+    type: string
 required:
   - _embedded
