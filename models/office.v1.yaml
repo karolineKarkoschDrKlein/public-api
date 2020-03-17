@@ -11,6 +11,11 @@ properties:
   externalId:
     type: string
     maxLength: 255
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
 required:
   - id
   - name

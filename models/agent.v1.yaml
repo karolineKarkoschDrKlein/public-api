@@ -16,5 +16,10 @@ properties:
     required:
       - office
       - employee
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
 required:
   - id

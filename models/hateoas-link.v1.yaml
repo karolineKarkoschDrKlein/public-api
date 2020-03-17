@@ -1,0 +1,8 @@
+title: HalJson Link
+type: object
+properties:
+  href:
+    type: string
+    description: Link to a resource
+required:
+  - href

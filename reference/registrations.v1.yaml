@@ -1,9 +1,62 @@
-openapi: '3.0.0'
+openapi: 3.0.0
 info:
-  title: registrations.v1.yaml
+  title: Registration API
   version: '1.0'
+  description: 'With these endpoints you can register as a Company in the Dr. Klein Plattform '
 servers:
-- url: http://localhost:3000
-paths: {}
+  - url: 'https://api.drklein-plattform.de'
+    description: PROD
+  - url: 'https://api.staging.drklein-plattform.de'
+    description: STAGING
+paths:
+  /v1/company-registrations:
+    get:
+      summary: Get Company Registrations
+      tags:
+        - Company
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-registration.v1.yaml
+      operationId: get-company-registrations
+      description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
+    post:
+      summary: Create Company Registration
+      operationId: post-v1-company-registrations
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-registration.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created CompanyRegistration
+      description: 'A company is created asynchronous. The creations is triggered by creating a company-registration which needs to be polled until the company was created. When the registration finishes, it will also contain service credentials that are deleted 10min after creation'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ''
+              properties:
+                name:
+                  type: string
+                  description: The name of the company to be created. It needs to be unique
+                slug:
+                  type: string
+                  description: the slug that will identify this company in the first path parameter
+                  maxLength: 36
+              required:
+                - name
+      tags:
+        - Company
+    parameters: []
 components:
   schemas: {}

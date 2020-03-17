@@ -20,13 +20,7 @@ properties:
       - self
     properties:
       self:
-        type: object
-        required:
-          - href
-        properties:
-          href:
-            type: string
-            description: self-link to this employee
+        $ref: ./hateoas-link.v1.yaml
 required:
   - id
   - firstName

@@ -8,10 +8,10 @@ properties:
     type: string
     description: 'the status of the registration. First it is created, then the corresponding company is created, then the Credentials are created which makes it FINISHED and 10min later it expires and the credentials are deleted'
     enum:
-      - CREATED
+      - PENDING
       - COMPANY_CREATED
-      - EXPIRED
       - COMPLETED
+      - EXPIRED
   message:
     type: string
     description: A human readable explanation of the current status

@@ -1,8 +1,12 @@
 openapi: 3.0.0
 info:
-  title: Dr. Klein Plattform API
+  title: Company API
   version: '1.0'
   description: |-
+    All Resources in this context are assigned to a company. Each company has a unique companySlug that always needs to be passed as the first path parameter. For example the Slug for Dr. Klein Privatkunden AG is "drklein", so the path to list all employees of drklein would be:
+
+    https://api.drklein-plattform.de/drklein/v1/employees
+
     # Cooperation
 
     A cooperation represents two agents working together. It is created from a cooperation contract that can be created in the platform via
@@ -277,55 +281,6 @@ paths:
       description: 'An employee is created asynchronous. After POSTing to this endpoint, a LOCATION-header to a task-resource will be returned that can be polled and will return a link to the employee once it was created'
       tags:
         - Employees
-  /v1/company-registrations:
-    get:
-      summary: Get Company Registrations
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ../models/company-registration.v1.yaml
-      operationId: get-company-registrations
-      description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
-      tags:
-        - Company
-    parameters: []
-    post:
-      summary: Create Company Registration
-      operationId: post-v1-company-registrations
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: ../models/company-registration.v1.yaml
-          headers:
-            LOCATION:
-              schema:
-                type: string
-              description: Link to the created CompanyRegistration
-      description: 'A company is created asynchronous. The creations is triggered by creating a company-registration which needs to be polled until the company was created. When the registration finishes, it will also contain service credentials that are deleted 10min after creation'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              description: ''
-              properties:
-                name:
-                  type: string
-                  description: The name of the company to be created. It needs to be unique
-                slug:
-                  type: string
-                  description: the slug that will identify this company in the first path parameter
-                  maxLength: 36
-              required:
-                - name
-      tags:
-        - Company
   '/v1/companies/{companyId}':
     parameters:
       - schema:
@@ -398,8 +353,8 @@ paths:
       summary: Delete an office
       operationId: delete-v1-offices-officeId
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
       description: Delete an office
       tags:
         - Offices
@@ -434,8 +389,8 @@ paths:
       tags:
         - Employees
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
           content:
             application/json:
               schema:
@@ -472,15 +427,19 @@ paths:
                     type: string
                     description: 'status of the employee-creation '
                     enum:
-                      - PROCESSING
+                      - PENDING
                       - COMPLETED
                   message:
                     type: string
                     description: human-readable explanation of the current status
                     maxLength: 255
+                  id:
+                    type: string
+                    maxLength: 36
                 required:
                   - status
                   - message
+                  - id
         '303':
           description: See Other
           content:
@@ -530,8 +489,8 @@ paths:
       summary: Delete a Company Cooperation Contract
       operationId: delete-v1-company-cooperation-contracts-contractId
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
       tags:
         - Company
 components:

@@ -7,14 +7,37 @@ properties:
     maxLength: 36
   name:
     type: string
-    description: The name of the company
     maxLength: 255
+    description: The name of the company
   slugs:
     type: array
     description: the slugs that identify this company and are used in the path
     items:
       type: string
+  _links:
+    type: object
+    required:
+      - self
+      - agents
+      - offices
+      - employees
+      - cooperations
+    description: Links to resources that belong to this company
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
+      agents:
+        $ref: ./hateoas-link.v1.yaml
+      offices:
+        $ref: ./hateoas-link.v1.yaml
+      employees:
+        $ref: ./hateoas-link.v1.yaml
+      cooperations:
+        $ref: ./cooperation.v1.yaml
+      companyCooperationcontracts:
+        $ref: ./hateoas-link.v1.yaml
 required:
   - id
   - name
   - slugs
+  - _links

@@ -24,27 +24,13 @@ properties:
       - self
     properties:
       first:
-        type: object
-        properties:
-          href:
-            type: string
+        $ref: ./hateoas-link.v1.yaml
       self:
-        type: object
-        required:
-          - href
-        properties:
-          href:
-            type: string
+        $ref: ./hateoas-link.v1.yaml
       next:
-        type: object
-        properties:
-          href:
-            type: string
+        $ref: ./hateoas-link.v1.yaml
       last:
-        type: object
-        properties:
-          href:
-            type: string
+        $ref: ./hateoas-link.v1.yaml
   _embedded:
     type: object
     properties:
