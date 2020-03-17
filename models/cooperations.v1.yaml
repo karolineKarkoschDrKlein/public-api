@@ -1,14 +1,9 @@
 title: Cooperations
 type: object
-description: Resource einer Liste aller Kooperationen
+description: List of cooperations
 properties:
   page:
     type: object
-    required:
-      - totalPages
-      - totalElements
-      - size
-      - number
     properties:
       totalPages:
         type: integer
@@ -18,10 +13,13 @@ properties:
         type: integer
       number:
         type: integer
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
   _links:
     type: object
-    required:
-      - self
     properties:
       first:
         type: object
@@ -30,11 +28,11 @@ properties:
             type: string
       self:
         type: object
-        required:
-          - href
         properties:
           href:
             type: string
+        required:
+          - href
       next:
         type: object
         properties:
@@ -45,6 +43,8 @@ properties:
         properties:
           href:
             type: string
+    required:
+      - self
   _embedded:
     type: object
     properties:

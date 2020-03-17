@@ -1,9 +1,14 @@
-title: Agents
+title: Company Cooperation Contracts
 type: object
-description: List of agents
+description: List of companyCooperationContracts
 properties:
   page:
     type: object
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
     properties:
       totalPages:
         type: integer
@@ -15,6 +20,8 @@ properties:
         type: integer
   _links:
     type: object
+    required:
+      - self
     properties:
       first:
         type: object
@@ -23,6 +30,8 @@ properties:
             type: string
       self:
         type: object
+        required:
+          - href
         properties:
           href:
             type: string
@@ -39,9 +48,10 @@ properties:
   _embedded:
     type: object
     properties:
-      agents:
+      offices:
         type: array
         items:
-          $ref: ./agent.v1.yaml
-x-examples:
-  example-1: {}
+          $ref: ./company-cooperation-contract.v1.yaml
+required:
+  - page
+  - _links

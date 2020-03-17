@@ -1,10 +1,18 @@
-title: PagedCollection
+title: Offices
 type: object
+description: List of offices
 properties:
   _embedded:
     type: object
+    properties:
+      offices:
+        type: array
+        items:
+          $ref: ./office.v1.yaml
   _links:
     type: object
+    required:
+      - self
     properties:
       first:
         type: object
@@ -13,6 +21,8 @@ properties:
             type: string
       self:
         type: object
+        required:
+          - href
         properties:
           href:
             type: string
@@ -28,6 +38,11 @@ properties:
             type: string
   page:
     type: object
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
     properties:
       totalPages:
         type: integer
@@ -37,4 +52,6 @@ properties:
         type: integer
       number:
         type: integer
-description: Pageable list of a resource
+required:
+  - _links
+  - page

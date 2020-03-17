@@ -1,6 +1,5 @@
 title: Office
 type: object
-description: 'Ein Büro ist ein Standort, dem mehrere Mitarbeiter als Agent zugeordnet sein können.'
 properties:
   id:
     type: string
@@ -8,5 +7,6 @@ properties:
     type: string
   externalKey:
     type: string
+description: An office is a location where multiple agents can work
 required:
   - id

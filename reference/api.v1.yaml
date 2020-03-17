@@ -1,0 +1,471 @@
+openapi: 3.0.0
+info:
+  title: Dr. Klein Plattform API
+  version: '1.0'
+  description: |-
+    #Cooperation
+
+    A cooperation represents two agents working together. It is created from a cooperation contract that can be created in the platform via
+    Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
+    Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden.
+
+    # Agenten
+
+    Agenten sind Mitarbeiter einer Firma, die in einem Büro Kunden betreuen. Dies können sowohl Makler als auch Berater oder sogar Kundenbetreuer für andere Leistungen sein. Sie empfangen Leads und verwalten Ihre Kunden. Optional können sie dazu Vorgänge in der Plattform oder in externen Systemen wie z.B. Europace anlegen.
+  contact:
+    name: Timo Lange
+    email: das-produkt@drklein.de
+  termsOfService: Terms of Service
+servers:
+  - url: 'https://api.drklein-plattform.de/{companySlug}'
+    description: PROD
+  - url: 'https://api.staging.drklein-plattform.de/{companySlug}'
+    description: STAGING
+paths:
+  '/v1/agents/{agentId}/partner-agents':
+    parameters:
+      - schema:
+          type: string
+        name: agentId
+        in: path
+        required: true
+    get:
+      summary: Find all partner agents
+      tags:
+        - Agenten
+      responses: {}
+      operationId: get-v1-agents-agentId-partner-agents
+      description: Show all agents that are cooperating with this agent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/agents.v1.yaml
+  /v1/agents:
+    get:
+      summary: Find all agents
+      tags:
+        - Agents
+      responses: {}
+      operationId: get-v1-agents
+      description: Displays all agents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/agents.v1.yaml
+    post:
+      summary: Create a new Agent
+      operationId: post-v1-agents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agent.v1.yaml
+      description: An agent can be created with an existing employee and an existing office
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+            examples:
+              example-1: {}
+  /v1/cooperations:
+    get:
+      summary: Cooperations
+      tags:
+        - Cooperations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/cooperations.v1.yaml
+      operationId: get-cooperations
+      description: Show cooperations of a company
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: contractingPartnerId
+        - schema:
+            type: string
+          in: query
+          name: contractingPartnerExternalKey
+    parameters: []
+  /v1/company-cooperation-contracts:
+    get:
+      summary: Company Cooperation Contracts
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-cooperation-contracts.v1.yaml
+      operationId: get-v1-company-cooperation-contracts
+      description: 'To enable agents of two companies to cooperate, the companies that these agents work for need to have a companyCooperationContract'
+    post:
+      summary: ''
+      operationId: post-v1-company-cooperation-contracts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-cooperation-contract.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creatingCompanyId:
+                  type: string
+                  maxLength: 36
+                  description: the currently authenticated user needs to belong to this company and this company will be allowed to delete the contract
+                contractingCompanyId:
+                  type: string
+                  maxLength: 36
+                  description: "this company won't be able to delete the contract but it needs to sign it otherwise the contract stays invalid"
+              required:
+                - creatingCompanyId
+                - contractingCompanyId
+  '/v1/agents/{agentId}':
+    parameters:
+      - schema:
+          type: string
+        name: agentId
+        in: path
+        required: true
+    get:
+      summary: Get an agent
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agent.v1.yaml
+      operationId: get-v1-agents-agentId
+      description: Returns one agent
+  /v1/offices:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/offices.v1.yaml
+      operationId: get-v1-offices
+      description: ''
+    post:
+      summary: Create a new office
+      operationId: post-v1-offices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/office.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                externalId:
+                  type: string
+                  maxLength: 255
+              required:
+                - name
+  /v1/employees:
+    get:
+      summary: Get employee
+      tags: []
+      responses: {}
+      operationId: get-v1-employees
+    post:
+      summary: Create employee
+      operationId: post-v1-employees
+      responses:
+        '303':
+          description: See Other
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Task-resource that can be polled until employee was created
+              required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  maxLength: 255
+                firstName:
+                  type: string
+                  maxLength: 255
+                lastName:
+                  type: string
+                  maxLength: 255
+              required:
+                - email
+      description: 'An employee is created asynchronous. After POSTing to this endpoint, a LOCATION-header to a task-resource will be returned that can be polled and will return a link to the employee once it was created'
+  /v1/company-registrations:
+    get:
+      summary: Company Registrations
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-registration.v1.yaml
+      operationId: get-company-registrations
+      description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
+    parameters: []
+    post:
+      summary: Company Registration
+      operationId: post-v1-company-registrations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      description: 'A company is created asynchronous. The creations is triggered by creating a company-registration which needs to be polled until the company was created. When the registration finishes, it will also contain service credentials that are deleted 10min after creation'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: ''
+              properties:
+                name:
+                  type: string
+                  description: The name of the company to be created. It needs to be unique
+                slug:
+                  type: string
+                  description: the slug that will identify this company in the first path parameter
+                  maxLength: 255
+              required:
+                - name
+  '/v1/companies/{companyId}':
+    parameters:
+      - schema:
+          type: string
+        name: companyId
+        in: path
+        required: true
+    get:
+      summary: Company
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company.v1.yaml
+      operationId: get-v1-companies-companyId
+      description: Get a single company by id
+  '/v1/offices/{officeId}':
+    parameters:
+      - schema:
+          type: string
+        name: officeId
+        in: path
+        required: true
+    get:
+      summary: Get a single office
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/office.v1.yaml
+      operationId: get-v1-offices-officeId
+      description: ''
+    put:
+      summary: Update an office
+      operationId: put-v1-offices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/office.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                externalId:
+                  type: string
+                  maxLength: 255
+    delete:
+      summary: ''
+      operationId: delete-v1-offices-officeId
+      responses:
+        '200':
+          description: OK
+      description: Delete an office
+    patch:
+      summary: ''
+      operationId: patch-v1-offices-officeId
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                externalId:
+                  type: string
+  '/v1/employees/{employeeId}':
+    parameters:
+      - schema:
+          type: string
+        name: employeeId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/employee.v1.yaml
+      operationId: get-v1-employees-employeeId
+    delete:
+      summary: ''
+      operationId: delete-v1-employees-employeeId
+      responses:
+        '200':
+          description: OK
+  '/v1/employees/tasks/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: 'status of the employee-creation '
+                    enum:
+                      - PROCESSING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: human-readable explanation of the current status
+                    maxLength: 255
+                required:
+                  - status
+                  - message
+        '303':
+          description: See Other
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: 'status of the employee-creation '
+                    enum:
+                      - PROCESSING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: human-readable explanation of the current status
+                    maxLength: 255
+                required:
+                  - status
+                  - message
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created employee
+      operationId: get-v1-employees-tasks-taskId
+  '/v1/company-cooperation-contracts/{contractId}':
+    parameters:
+      - schema:
+          type: string
+        name: contractId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/company-cooperation-contract.v1.yaml
+      operationId: get-v1-company-cooperation-contracts-contractId
+    delete:
+      summary: ''
+      operationId: delete-v1-company-cooperation-contracts-contractId
+      responses:
+        '200':
+          description: OK
+components:
+  schemas: {}
+  securitySchemes:
+    Dr.Klein Plattform ID Service:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+      description: Alle Aufrufe der Public Api benötigen einen gültigen OAuth Token vom ID Service der Dr.Klein Plattform.

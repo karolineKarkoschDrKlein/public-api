@@ -1,0 +1,24 @@
+title: CompanyCooperationContract
+type: object
+description: Two agents can only cooperate if the companies they work for have a cooperationContract
+properties:
+  id:
+    type: string
+  valid:
+    type: boolean
+    description: The creatingCompany can create and delete the contract but the contractingParty has to give consent by updating the contract. Only after that it is valid
+  createdAt:
+    type: string
+  _embedded:
+    type: object
+    properties:
+      creatingCompany:
+        $ref: ./company.v1.yaml
+      contractingCompany:
+        $ref: ./company.v1.yaml
+  _links:
+    type: string
+required:
+  - id
+  - valid
+  - createdAt

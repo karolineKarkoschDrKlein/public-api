@@ -1,6 +1,6 @@
 title: Employee
 type: object
-description: Ein Mitarbeiter einer Firma innerhalb der Dr. Klein Plattform
+description: ''
 properties:
   id:
     type: string
@@ -11,14 +11,25 @@ properties:
   externalKey:
     type: string
     description: 'Ein Schlüssel, der vom Nutzer der API vergeben werden kann. Er muss unique pro Firma sein.'
-  username:
-    type: string
-    description: 'Eine Emailadresse, die als Benutzername genutzt wird. Sie muss auf der Plattform unique sein.'
   email:
     type: string
     description: Die primäre Email-Kontaktadresse des Mitarbeiters.
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      self:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            description: self-link to this employee
 required:
   - id
   - firstName
   - lastName
-  - username
+  - email
+  - _links

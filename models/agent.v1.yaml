@@ -1,6 +1,6 @@
 title: Agent
 type: object
-description: Ein Agent repräsentiert einen Mitarbeiter in einem bestimmten Büro.
+description: An agent represents an employee working in a certain office
 properties:
   id:
     type: string

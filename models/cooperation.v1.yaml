@@ -1,17 +1,17 @@
 title: Cooperation
 type: object
-description: Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern.
+description: A cooperation represents two partners working together
 properties:
   _embedded:
     type: object
-    required:
-      - partner
-      - creatingPartner
     properties:
       partner:
         $ref: ./agent.v1.yaml
       creatingPartner:
         $ref: ./agent.v1.yaml
+    required:
+      - partner
+      - creatingPartner
   id:
     type: string
 required:
