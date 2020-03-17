@@ -32,6 +32,8 @@ paths:
         required: true
     get:
       summary: Find all partner agents
+      tags:
+        - Agents
       responses: {}
       operationId: get-v1-agents-agentId-partner-agents
       description: Show all agents that are cooperating with this agent
@@ -40,8 +42,6 @@ paths:
           application/json:
             schema:
               $ref: ../models/agents.v1.yaml
-      tags:
-        - Agents
   /v1/agents:
     get:
       summary: Find all agents
@@ -73,6 +73,8 @@ paths:
               $ref: ''
             examples:
               example-1: {}
+      tags:
+        - Agents
   /v1/cooperations:
     get:
       summary: Cooperations
@@ -100,6 +102,8 @@ paths:
   /v1/company-cooperation-contracts:
     get:
       summary: Company Cooperation Contracts
+      tags:
+        - Company
       responses:
         '200':
           description: OK
@@ -109,8 +113,6 @@ paths:
                 $ref: ../models/company-cooperation-contracts.v1.yaml
       operationId: get-v1-company-cooperation-contracts
       description: 'To enable agents of two companies to cooperate, the companies that these agents work for need to have a companyCooperationContract'
-      tags:
-        - Company
     post:
       summary: ''
       operationId: post-v1-company-cooperation-contracts
@@ -138,6 +140,8 @@ paths:
               required:
                 - creatingCompanyId
                 - contractingCompanyId
+      tags:
+        - Company
   '/v1/agents/{agentId}':
     parameters:
       - schema:
@@ -196,6 +200,8 @@ paths:
                   maxLength: 255
               required:
                 - name
+      tags:
+        - Offices
   /v1/employees:
     get:
       summary: Get employee
@@ -233,9 +239,13 @@ paths:
               required:
                 - email
       description: 'An employee is created asynchronous. After POSTing to this endpoint, a LOCATION-header to a task-resource will be returned that can be polled and will return a link to the employee once it was created'
+      tags:
+        - Employees
   /v1/company-registrations:
     get:
       summary: Company Registrations
+      tags:
+        - Company
       responses:
         '200':
           description: OK
@@ -245,8 +255,6 @@ paths:
                 $ref: ../models/company-registration.v1.yaml
       operationId: get-company-registrations
       description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
-      tags:
-        - Company
     parameters: []
     post:
       summary: Company Registration
@@ -276,6 +284,8 @@ paths:
                   maxLength: 255
               required:
                 - name
+      tags:
+        - Company
   '/v1/companies/{companyId}':
     parameters:
       - schema:
@@ -305,7 +315,8 @@ paths:
         required: true
     get:
       summary: Get a single office
-      tags: []
+      tags:
+        - Offices
       responses:
         '200':
           description: OK
@@ -337,6 +348,8 @@ paths:
                 externalId:
                   type: string
                   maxLength: 255
+      tags:
+        - Offices
     delete:
       summary: ''
       operationId: delete-v1-offices-officeId
@@ -362,6 +375,8 @@ paths:
                   type: string
                 externalId:
                   type: string
+      tags:
+        - Offices
   '/v1/employees/{employeeId}':
     parameters:
       - schema:
@@ -382,11 +397,13 @@ paths:
                 $ref: ../models/employee.v1.yaml
       operationId: get-v1-employees-employeeId
     delete:
-      summary: ''
+      summary: Delete employee
       operationId: delete-v1-employees-employeeId
       responses:
         '200':
           description: OK
+      tags:
+        - Employees
   '/v1/employees/tasks/{taskId}':
     parameters:
       - schema:
@@ -470,6 +487,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Company
 components:
   schemas: {}
   securitySchemes:
