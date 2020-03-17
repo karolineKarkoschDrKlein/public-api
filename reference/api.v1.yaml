@@ -247,6 +247,7 @@ paths:
                   maxLength: 255
               required:
                 - email
+        description: ''
       description: 'An employee is created asynchronous. After POSTing to this endpoint, a LOCATION-header to a task-resource will be returned that can be polled and will return a link to the employee once it was created'
       tags:
         - Employees
@@ -269,13 +270,12 @@ paths:
       summary: Create Company Registration
       operationId: post-v1-company-registrations
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: ../models/company-registration.v1.yaml
       description: 'A company is created asynchronous. The creations is triggered by creating a company-registration which needs to be polled until the company was created. When the registration finishes, it will also contain service credentials that are deleted 10min after creation'
       requestBody:
         content:
@@ -290,7 +290,7 @@ paths:
                 slug:
                   type: string
                   description: the slug that will identify this company in the first path parameter
-                  maxLength: 255
+                  maxLength: 36
               required:
                 - name
       tags:
