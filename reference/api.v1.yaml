@@ -77,7 +77,7 @@ paths:
         - Agents
   /v1/cooperations:
     get:
-      summary: Cooperations
+      summary: Get Cooperations
       tags:
         - Cooperations
       responses:
@@ -88,12 +88,13 @@ paths:
               schema:
                 $ref: ../models/cooperations.v1.yaml
       operationId: get-cooperations
-      description: Show cooperations of a company
+      description: A cooperation is an agreement between two agents that want to work together
       parameters:
         - schema:
             type: string
           in: query
           name: contractingPartnerId
+          description: 'if this parameter is set, only cooperations where any partner has this id are shown'
         - schema:
             type: string
           in: query
@@ -209,7 +210,14 @@ paths:
       summary: Get employees
       tags:
         - Employees
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
       operationId: get-v1-employees
     post:
       summary: Create an employee
@@ -295,6 +303,7 @@ paths:
         name: companyId
         in: path
         required: true
+        description: id of the company
     get:
       summary: Get company by Id
       tags:
@@ -351,6 +360,8 @@ paths:
                 externalId:
                   type: string
                   maxLength: 255
+              required:
+                - name
       tags:
         - Offices
     delete:
@@ -387,6 +398,7 @@ paths:
         name: employeeId
         in: path
         required: true
+        description: id of the employee
     get:
       summary: Get an employee
       tags:
@@ -415,7 +427,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get employeeTask status
       tags:
         - Employees
       responses:

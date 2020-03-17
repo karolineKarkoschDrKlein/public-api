@@ -10,10 +10,10 @@ properties:
     type: string
   externalKey:
     type: string
-    description: 'Ein Schlüssel, der vom Nutzer der API vergeben werden kann. Er muss unique pro Firma sein.'
+    description: A key that can be set by the user of this api. It needs to be unique within a company
   email:
     type: string
-    description: Die primäre Email-Kontaktadresse des Mitarbeiters.
+    description: The primary email address of this employee
   _links:
     type: object
     required:
