@@ -3,15 +3,16 @@ info:
   title: Dr. Klein Plattform API
   version: '1.0'
   description: |-
-    #Cooperation
+    # Cooperation
 
     A cooperation represents two agents working together. It is created from a cooperation contract that can be created in the platform via
     Eine Kooperation bezeichnet die Zusammenarbeit zwischen zwei Partnern. Ein Partner ist ein Mitarbeiter an einem Standort. Sie entstehen aus Kooperationsverträgen, die in der Plattform über die Weboberfläche angelegt und gepflegt werden können.
     Über diese Schnittstelle können u.a. die aktuellen Kooperationen eines Partners abgefragt werden.
 
-    # Agenten
+    # Agents
 
-    Agenten sind Mitarbeiter einer Firma, die in einem Büro Kunden betreuen. Dies können sowohl Makler als auch Berater oder sogar Kundenbetreuer für andere Leistungen sein. Sie empfangen Leads und verwalten Ihre Kunden. Optional können sie dazu Vorgänge in der Plattform oder in externen Systemen wie z.B. Europace anlegen.
+    Agents are employees of a company that offers services for customers in an office. These services can include realtor services or finance consulting.
+    Agents receive leads and manage their customers. Additionally they can manage their cases in the platform and also external systems like Europace.
   contact:
     name: Timo Lange
     email: das-produkt@drklein.de
