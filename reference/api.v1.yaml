@@ -194,12 +194,14 @@ paths:
               properties:
                 name:
                   type: string
+                  minLength: 1
                   maxLength: 255
                 externalId:
                   type: string
                   maxLength: 255
               required:
                 - name
+        description: ''
       tags:
         - Offices
   /v1/employees:
@@ -312,6 +314,7 @@ paths:
           type: string
         name: officeId
         in: path
+        description: The id of the office
         required: true
     get:
       summary: Get a single office

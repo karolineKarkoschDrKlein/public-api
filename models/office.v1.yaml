@@ -4,9 +4,13 @@ description: An office is a location where multiple agents can work
 properties:
   id:
     type: string
+    maxLength: 36
   name:
     type: string
+    maxLength: 255
   externalId:
     type: string
+    maxLength: 255
 required:
   - id
+  - name
