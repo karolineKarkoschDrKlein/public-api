@@ -1,0 +1,56 @@
+title: Employees
+type: object
+description: List of employees
+properties:
+  page:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      totalElements:
+        type: integer
+      size:
+        type: integer
+      number:
+        type: integer
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      first:
+        type: object
+        properties:
+          href:
+            type: string
+      self:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+      next:
+        type: object
+        properties:
+          href:
+            type: string
+      last:
+        type: object
+        properties:
+          href:
+            type: string
+  _embedded:
+    type: object
+    properties:
+      offices:
+        type: array
+        items:
+          $ref: ./employee.v1.yaml
+required:
+  - _links
