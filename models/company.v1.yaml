@@ -4,10 +4,17 @@ description: 'Eine Firma auf der Dr.Klein Plattform. Sie entspricht technisch ei
 properties:
   id:
     type: string
+    maxLength: 36
   name:
     type: string
-  slug:
-    type: string
+    description: The name of the company
+    maxLength: 255
+  slugs:
+    type: array
+    description: the slugs that identify this company and are used in the path
+    items:
+      type: string
 required:
   - id
-  - slug
+  - name
+  - slugs

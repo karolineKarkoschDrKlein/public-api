@@ -1,0 +1,49 @@
+title: Company Registration
+type: object
+description: 'To create a company, a new company registration needs to be created. When the creation of the company and the initial set of credentials is finished, the company is embedded and the credentials can be found in the fields clientId and secret'
+properties:
+  id:
+    type: string
+  status:
+    type: string
+    enum:
+      - CREATED
+      - COMPANY_CREATED
+      - FINISHED
+      - EXPIRED
+    description: 'the status of the registration. First it is created, then the corresponding company is created, then the Credentials are created which makes it FINISHED and 10min later it expires and the credentials are deleted'
+  message:
+    type: string
+    description: A human readable explanation of the current status
+  expiresAt:
+    type: string
+    description: time at which this registration expires in ISO-format
+  clientId:
+    type: string
+    description: After the credentials were created this contains the clientId
+  secret:
+    type: string
+    description: After the credentials were created this contains the secret
+  _embedded:
+    type: object
+    properties:
+      company:
+        $ref: ./company.v1.yaml
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      self:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            description: self-link to this registration
+required:
+  - id
+  - status
+  - message
+  - _links
