@@ -243,7 +243,7 @@ paths:
         - Employees
   /v1/company-registrations:
     get:
-      summary: Company Registrations
+      summary: Get Company Registrations
       tags:
         - Company
       responses:
@@ -257,7 +257,7 @@ paths:
       description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
     parameters: []
     post:
-      summary: Company Registration
+      summary: Create Company Registration
       operationId: post-v1-company-registrations
       responses:
         '200':
@@ -294,7 +294,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Company
+      summary: Get company by Id
       tags:
         - Company
       responses:
@@ -470,7 +470,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Create Company Cooperation Contract
       tags:
         - Company
       responses:
@@ -482,7 +482,7 @@ paths:
                 $ref: ../models/company-cooperation-contract.v1.yaml
       operationId: get-v1-company-cooperation-contracts-contractId
     delete:
-      summary: ''
+      summary: Delete Company Cooperation Contract
       operationId: delete-v1-company-cooperation-contracts-contractId
       responses:
         '200':
