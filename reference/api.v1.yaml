@@ -164,7 +164,7 @@ paths:
       description: Returns one agent
   /v1/offices:
     get:
-      summary: Your GET endpoint
+      summary: Get offices
       tags:
         - Offices
       responses:
@@ -204,13 +204,13 @@ paths:
         - Offices
   /v1/employees:
     get:
-      summary: Get employee
+      summary: Get employees
       tags:
         - Employees
       responses: {}
       operationId: get-v1-employees
     post:
-      summary: Create employee
+      summary: Create an employee
       operationId: post-v1-employees
       responses:
         '303':
@@ -351,7 +351,7 @@ paths:
       tags:
         - Offices
     delete:
-      summary: ''
+      summary: Delete an office
       operationId: delete-v1-offices-officeId
       responses:
         '200':
@@ -360,7 +360,7 @@ paths:
       tags:
         - Offices
     patch:
-      summary: ''
+      summary: Patch an office
       operationId: patch-v1-offices-officeId
       responses:
         '200':
@@ -385,7 +385,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get an employee
       tags:
         - Employees
       responses:
@@ -397,7 +397,7 @@ paths:
                 $ref: ../models/employee.v1.yaml
       operationId: get-v1-employees-employeeId
     delete:
-      summary: Delete employee
+      summary: Delete an employee
       operationId: delete-v1-employees-employeeId
       responses:
         '200':
