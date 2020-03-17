@@ -36,6 +36,8 @@ paths:
         required: true
     get:
       summary: Find all partner agents
+      tags:
+        - Agents
       responses: {}
       operationId: get-v1-agents-agentId-partner-agents
       description: Show all agents that are cooperating with this agent
@@ -44,8 +46,6 @@ paths:
           application/json:
             schema:
               $ref: ../models/agents.v1.yaml
-      tags:
-        - Agents
   /v1/agents:
     get:
       summary: Find all agents
@@ -79,7 +79,9 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              required:
+                - employeeId
+                - officeId
               properties:
                 employeeId:
                   type: string
@@ -87,9 +89,7 @@ paths:
                 officeId:
                   type: string
                   maxLength: 36
-              required:
-                - employeeId
-                - officeId
+              type: object
             examples:
               example-1: {}
         description: ''
@@ -123,6 +123,8 @@ paths:
   /v1/company-cooperation-contracts:
     get:
       summary: Get Company Cooperation Contracts
+      tags:
+        - Company
       responses:
         '200':
           description: OK
@@ -132,8 +134,6 @@ paths:
                 $ref: ../models/company-cooperation-contracts.v1.yaml
       operationId: get-v1-company-cooperation-contracts
       description: 'To enable agents of two companies to cooperate, the companies that these agents work for need to have a companyCooperationContract'
-      tags:
-        - Company
     post:
       summary: Create a Company Cooperation Contract
       operationId: post-v1-company-cooperation-contracts
@@ -225,8 +225,8 @@ paths:
               properties:
                 name:
                   type: string
-                  maxLength: 255
                   minLength: 1
+                  maxLength: 255
                 externalId:
                   type: string
                   maxLength: 255
@@ -396,6 +396,7 @@ paths:
               schema:
                 $ref: ../models/employee.v1.yaml
       operationId: get-v1-employees-employeeId
+      description: Get a single employee by id
     delete:
       summary: Delete an employee
       operationId: delete-v1-employees-employeeId
