@@ -389,8 +389,8 @@ paths:
       tags:
         - Employees
       responses:
-        '204':
-          description: No Content
+        '200':
+          description: OK
           content:
             application/json:
               schema:
@@ -401,8 +401,8 @@ paths:
       summary: Delete an employee
       operationId: delete-v1-employees-employeeId
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
       tags:
         - Employees
   '/v1/employees/tasks/{taskId}':
