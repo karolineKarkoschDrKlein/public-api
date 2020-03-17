@@ -59,20 +59,36 @@ paths:
       summary: Create a new Agent
       operationId: post-v1-agents
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 $ref: ../models/agent.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created agent
       description: An agent can be created with an existing employee and an existing office
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ''
+              type: object
+              properties:
+                employeeId:
+                  type: string
+                  maxLength: 36
+                officeId:
+                  type: string
+                  maxLength: 36
+              required:
+                - employeeId
+                - officeId
             examples:
               example-1: {}
+        description: ''
       tags:
         - Agents
   /v1/cooperations:
@@ -118,12 +134,17 @@ paths:
       summary: Create a Company Cooperation Contract
       operationId: post-v1-company-cooperation-contracts
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 $ref: ../models/company-cooperation-contract.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created CompanyCooperationContract
       requestBody:
         content:
           application/json:
@@ -181,12 +202,17 @@ paths:
       summary: Create a new office
       operationId: post-v1-offices
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 $ref: ../models/office.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created office
       requestBody:
         content:
           application/json:
@@ -222,8 +248,8 @@ paths:
       summary: Create an employee
       operationId: post-v1-employees
       responses:
-        '303':
-          description: See Other
+        '202':
+          description: Accepted
           headers:
             LOCATION:
               schema:
@@ -276,6 +302,11 @@ paths:
             application/json:
               schema:
                 $ref: ../models/company-registration.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the created CompanyRegistration
       description: 'A company is created asynchronous. The creations is triggered by creating a company-registration which needs to be polled until the company was created. When the registration finishes, it will also contain service credentials that are deleted 10min after creation'
       requestBody:
         content:
