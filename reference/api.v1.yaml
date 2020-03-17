@@ -32,8 +32,6 @@ paths:
         required: true
     get:
       summary: Find all partner agents
-      tags:
-        - Agenten
       responses: {}
       operationId: get-v1-agents-agentId-partner-agents
       description: Show all agents that are cooperating with this agent
@@ -42,6 +40,8 @@ paths:
           application/json:
             schema:
               $ref: ../models/agents.v1.yaml
+      tags:
+        - Agents
   /v1/agents:
     get:
       summary: Find all agents
@@ -100,7 +100,6 @@ paths:
   /v1/company-cooperation-contracts:
     get:
       summary: Company Cooperation Contracts
-      tags: []
       responses:
         '200':
           description: OK
@@ -110,6 +109,8 @@ paths:
                 $ref: ../models/company-cooperation-contracts.v1.yaml
       operationId: get-v1-company-cooperation-contracts
       description: 'To enable agents of two companies to cooperate, the companies that these agents work for need to have a companyCooperationContract'
+      tags:
+        - Company
     post:
       summary: ''
       operationId: post-v1-company-cooperation-contracts
@@ -146,7 +147,8 @@ paths:
         required: true
     get:
       summary: Get an agent
-      tags: []
+      tags:
+        - Agents
       responses:
         '200':
           description: OK
@@ -159,7 +161,8 @@ paths:
   /v1/offices:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Offices
       responses:
         '200':
           description: OK
@@ -196,7 +199,8 @@ paths:
   /v1/employees:
     get:
       summary: Get employee
-      tags: []
+      tags:
+        - Employees
       responses: {}
       operationId: get-v1-employees
     post:
@@ -232,7 +236,6 @@ paths:
   /v1/company-registrations:
     get:
       summary: Company Registrations
-      tags: []
       responses:
         '200':
           description: OK
@@ -242,6 +245,8 @@ paths:
                 $ref: ../models/company-registration.v1.yaml
       operationId: get-company-registrations
       description: 'Get the status of a registration. The path for this endpoint is /v1/company-registrations/{registrationId}'
+      tags:
+        - Company
     parameters: []
     post:
       summary: Company Registration
@@ -280,7 +285,8 @@ paths:
         required: true
     get:
       summary: Company
-      tags: []
+      tags:
+        - Company
       responses:
         '200':
           description: OK
@@ -338,6 +344,8 @@ paths:
         '200':
           description: OK
       description: Delete an office
+      tags:
+        - Offices
     patch:
       summary: ''
       operationId: patch-v1-offices-officeId
@@ -363,7 +371,8 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Employees
       responses:
         '200':
           description: OK
@@ -387,7 +396,8 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Employees
       responses:
         '200':
           description: OK
@@ -444,7 +454,8 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Company
       responses:
         '200':
           description: OK
