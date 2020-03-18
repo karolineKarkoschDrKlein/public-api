@@ -87,6 +87,8 @@ paths:
                 officeId:
                   type: string
                   maxLength: 36
+                externalId:
+                  type: string
               required:
                 - employeeId
                 - officeId
