@@ -4,7 +4,7 @@ description: An agent represents an employee working in a certain office
 properties:
   id:
     type: string
-  externalKey:
+  externalId:
     type: string
   _embedded:
     type: object

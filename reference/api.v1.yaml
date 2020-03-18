@@ -120,7 +120,7 @@ paths:
         - schema:
             type: string
           in: query
-          name: contractingPartnerExternalKey
+          name: contractingPartnerExternalId
     parameters: []
   /v1/company-cooperation-contracts:
     get:
