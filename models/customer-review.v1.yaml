@@ -1,0 +1,56 @@
+title: Customer Review
+type: object
+description: A customer can rate a whole company or just one employee within that company and express his satisfaction with the received services with a review.
+properties:
+  id:
+    type: string
+  customerFirstName:
+    type: string
+  customerLastName:
+    type: string
+  customerPlaceOfResidence:
+    type: string
+  createdAt:
+    type: string
+  rating:
+    type: integer
+    description: the rating that the author gives the employee in points.
+  reviewText:
+    type: string
+    description: A text that the author of the review can add to explain his rating and give more information about his experience
+  recommendation:
+    type: boolean
+    description: true if the customer would recommend these services
+  consultingOccured:
+    type: boolean
+    description: true if the customer was consulted about a product before writing his review
+  _embedded:
+    type: object
+    properties:
+      productGroup:
+        type: object
+        description: contains the productGroup about which the customer was consulted
+        properties:
+          id:
+            type: string
+        required:
+          - id
+      company:
+        $ref: ./company.v1.yaml
+      employee:
+        $ref: ./employee.v1.yaml
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
+  customerEmail:
+    type: string
+  customerExternalId:
+    type: string
+required:
+  - id
+  - _embedded
+  - _links

@@ -1,0 +1,41 @@
+title: customer-reviews.v1
+type: object
+properties:
+  _embedded:
+    type: object
+    properties:
+      offices:
+        type: array
+        items:
+          $ref: ./customer-review.v1.yaml
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      first:
+        $ref: ./hateoas-link.v1.yaml
+      self:
+        $ref: ./hateoas-link.v1.yaml
+      next:
+        $ref: ./hateoas-link.v1.yaml
+      last:
+        $ref: ./hateoas-link.v1.yaml
+  page:
+    type: object
+    properties:
+      totalPages:
+        type: integer
+      totalElements:
+        type: integer
+      size:
+        type: integer
+      number:
+        type: integer
+    required:
+      - totalPages
+      - totalElements
+      - size
+      - number
+required:
+  - _links

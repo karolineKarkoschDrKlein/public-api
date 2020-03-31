@@ -498,6 +498,104 @@ paths:
           description: No Content
       tags:
         - Company
+  /v1/customer-reviews:
+    get:
+      summary: Get a customer review
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/customer-reviews.v1.yaml
+      operationId: get-v1-agent-reviews
+      description: Get all reviews of this company
+    post:
+      summary: Create a customer review
+      operationId: post-v1-agent-reviews
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Link to the review that will be created
+      tags:
+        - agentReview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerFirstName:
+                  type: string
+                  maxLength: 255
+                customerLastName:
+                  type: string
+                  maxLength: 255
+                customerPlaceOfResidence:
+                  type: string
+                  maxLength: 255
+                createdAt:
+                  type: string
+                  description: ''
+                externalId:
+                  type: string
+                  maxLength: 255
+                rating:
+                  type: number
+                reviewText:
+                  type: string
+                productGroupId:
+                  type: string
+                  maxLength: 36
+                recomendation:
+                  type: boolean
+                  description: true if this customer would recommend the services
+                consultingOccured:
+                  type: boolean
+                  description: true if the customer was consulted by an agent before giving the review
+                employeeId:
+                  type: string
+                  maxLength: 36
+                  description: if the review references a certain employee it can be linked with this field
+                authorEmail:
+                  type: string
+                  maxLength: 255
+                authorExternalId:
+                  type: string
+                  maxLength: 255
+                publiclyVisible:
+                  type:
+                    - string
+                    - boolean
+                  maxLength: 255
+                  description: 'if this is set to true, it is be possible to view this review without being authenticated (e.g. to display it on a website) '
+        description: ''
+      description: Create a new review for this company
+    parameters: []
+  '/v1/customer-reviews/{reviewId}':
+    parameters:
+      - schema:
+          type: string
+        name: reviewId
+        in: path
+        required: true
+    get:
+      summary: Get a customer review
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agent-review.v1.yaml
+      operationId: get-v1-agent-reviews-reviewId
+      description: Get a single customerReview by its id
 components:
   schemas: {}
   securitySchemes:
