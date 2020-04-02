@@ -401,6 +401,13 @@ paths:
                 $ref: ../models/employee.v1.yaml
       operationId: get-v1-employees-employeeId
       description: Get a single employee by id
+      parameters:
+        - schema:
+            type: string
+            maxLength: ''
+          in: query
+          name: email
+          description: filter by the email-address of the employee
     delete:
       summary: Delete an employee
       operationId: delete-v1-employees-employeeId
