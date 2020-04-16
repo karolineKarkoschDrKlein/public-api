@@ -250,6 +250,13 @@ paths:
               schema:
                 $ref: ../models/employees.v1.yaml
       operationId: get-v1-employees
+      parameters:
+        - schema:
+            type: string
+            maxLength: 255
+          in: query
+          name: email
+          description: filter by the email-address of the employee
     post:
       summary: Create an employee
       operationId: post-v1-employees
@@ -401,13 +408,7 @@ paths:
                 $ref: ../models/employee.v1.yaml
       operationId: get-v1-employees-employeeId
       description: Get a single employee by id
-      parameters:
-        - schema:
-            type: string
-            maxLength: ''
-          in: query
-          name: email
-          description: filter by the email-address of the employee
+      parameters: []
     delete:
       summary: Delete an employee
       operationId: delete-v1-employees-employeeId
@@ -507,8 +508,9 @@ paths:
         - Company
   /v1/customer-reviews:
     get:
-      summary: Get a customer review
-      tags: []
+      summary: Get customer reviews
+      tags:
+        - agentReview
       responses:
         '200':
           description: OK
@@ -593,14 +595,15 @@ paths:
         required: true
     get:
       summary: Get a customer review
-      tags: []
+      tags:
+        - agentReview
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: ../models/agent-review.v1.yaml
+                $ref: ../models/customer-review.v1.yaml
       operationId: get-v1-agent-reviews-reviewId
       description: Get a single customerReview by its id
 components:
