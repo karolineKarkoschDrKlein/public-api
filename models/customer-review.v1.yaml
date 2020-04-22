@@ -27,14 +27,6 @@ properties:
   _embedded:
     type: object
     properties:
-      productGroup:
-        type: object
-        description: contains the productGroup about which the customer was consulted
-        properties:
-          id:
-            type: string
-        required:
-          - id
       company:
         $ref: ./company.v1.yaml
       employee:
@@ -50,6 +42,17 @@ properties:
     type: string
   customerExternalId:
     type: string
+  publiclyVisible:
+    type: boolean
+  externalId:
+    type: string
+  platformProductGroupId:
+    type: string
+    enum:
+      - BAUFINANZIERUNG
+      - GELDANLAGE
+      - RATENKREDIT
+      - VERSICHERUNG
 required:
   - id
   - _embedded
