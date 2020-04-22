@@ -524,8 +524,8 @@ paths:
       summary: Create a customer review
       operationId: post-v1-agent-reviews
       responses:
-        '202':
-          description: Accepted
+        '201':
+          description: Created
           headers:
             LOCATION:
               schema:
@@ -558,10 +558,14 @@ paths:
                   type: number
                 reviewText:
                   type: string
-                productGroupId:
+                platformProductGroupId:
                   type: string
-                  maxLength: 36
                   description: the unique id of the product group about which the customer was consulted
+                  enum:
+                    - BAUFINANZIERUNG
+                    - RATENKREDIT
+                    - GELDANLAGE
+                    - VERSICHERUNG
                 recomendation:
                   type: boolean
                   description: true if this customer would recommend the services
@@ -572,10 +576,10 @@ paths:
                   type: string
                   maxLength: 36
                   description: if the review references a certain employee it can be linked with this field
-                authorEmail:
+                customerEmail:
                   type: string
                   maxLength: 255
-                authorExternalId:
+                customerExternalId:
                   type: string
                   maxLength: 255
                 publiclyVisible:
@@ -584,10 +588,6 @@ paths:
                     - boolean
                   maxLength: 255
                   description: 'if this is set to true, it is be possible to view this review without being authenticated (e.g. to display it on a website) '
-                productGroupPlatformId:
-                  type: string
-                  maxLength: 255
-                  description: A unique identifier for product groups that is the same across all stages (staging and prod)
         description: ''
       description: Create a new review for this company
     parameters: []
