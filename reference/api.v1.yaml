@@ -613,8 +613,9 @@ paths:
       description: Get a single customerReview by its id
   /v1/webhooks:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get Webhooks
+      tags:
+        - Webhook
       responses:
         '200':
           description: OK
@@ -625,7 +626,7 @@ paths:
       operationId: get-v1-webhooks
       description: Returns all webhooks from this company
     post:
-      summary: ''
+      summary: Create Webhook
       operationId: post-v1-webhooks
       responses:
         '200':
@@ -685,8 +686,9 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Get a Webhook
+      tags:
+        - Webhook
       responses:
         '200':
           description: OK
@@ -697,11 +699,73 @@ paths:
       operationId: get-v1-webhooks-webhookId
       description: Get a single webhook
     delete:
-      summary: ''
+      summary: Delete a webhook
       operationId: delete-v1-webhooks-webhookId
       responses:
         '200':
           description: OK
+  '/v1/customer-transitions/{transitionId}':
+    parameters:
+      - schema:
+          type: string
+        name: transitionId
+        in: path
+        required: true
+    get:
+      summary: Get a customerTransition
+      tags:
+        - CustomerTransition
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/customer-transition.v1.yaml
+      operationId: get-v1-customer-transitions-transitionId
+  '/v1/customer-transitions/{transitionId}/finance-feedbacks':
+    parameters:
+      - schema:
+          type: string
+        name: transitionId
+        in: path
+        required: true
+    get:
+      summary: Get financeFeedbacks
+      tags:
+        - FinanceFeedback
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/finance-feedbacks.v1.yaml
+      operationId: get-v1-customer-transitions-transitionId-finance-feedbacks
+  '/v1/customer-transitions/{transitionId}/finance-feedbacks/{feedbackId}':
+    parameters:
+      - schema:
+          type: string
+        name: transitionId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: feedbackId
+        in: path
+        required: true
+    get:
+      summary: Get a finance feedbac
+      tags:
+        - FinanceFeedback
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/finance-feedback.v1.yaml
+      operationId: get-v1-customer-transitions-transitionId-finance-feedbacks-feedbackId
 components:
   schemas: {}
   securitySchemes:
