@@ -678,6 +678,8 @@ paths:
                 - targetUrl
                 - resource
                 - event
+      tags:
+        - Webhook
   '/v1/webhooks/{webhookId}':
     parameters:
       - schema:
@@ -704,6 +706,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Webhook
   '/v1/customer-transitions/{transitionId}':
     parameters:
       - schema:
