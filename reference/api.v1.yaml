@@ -615,9 +615,68 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/webhooks.v1.yaml
       operationId: get-v1-webhooks
       description: Returns all webhooks from this company
+    post:
+      summary: ''
+      operationId: post-v1-webhooks
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ../models/webhook.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                targetUrl:
+                  type: string
+                  maxLength: 255
+                resource:
+                  type: string
+                  enum:
+                    - office.v1
+                    - finance-feedback.v1
+                    - customer-transition.v1
+                    - agent.v1
+                    - employee.v1
+                    - webhook.v1
+                    - cooperation.v1
+                event:
+                  type: string
+                  enum:
+                    - created
+                    - updated
+                    - deleted
+                    - all
+                secret:
+                  type: string
+                  description: if this parameter is set then each POST from this webhook will contain a X-CPORT-SIGNATURE header with an HMAC-SHA1 generated with this secret of the payload
+                  maxLength: 255
+                basicAuthUser:
+                  type: string
+                  maxLength: 255
+                basicAuthPassword:
+                  type: string
+                  maxLength: 255
+              required:
+                - targetUrl
+                - resource
+                - event
   '/v1/webhooks/{webhookId}':
     parameters:
       - schema:
@@ -628,8 +687,21 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/webhook.v1.yaml
       operationId: get-v1-webhooks-webhookId
+      description: Get a single webhook
+    delete:
+      summary: ''
+      operationId: delete-v1-webhooks-webhookId
+      responses:
+        '200':
+          description: OK
 components:
   schemas: {}
   securitySchemes:
