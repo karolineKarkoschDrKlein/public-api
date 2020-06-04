@@ -1,0 +1,32 @@
+title: Finance Feedback
+type: object
+properties:
+  id:
+    type: string
+    maxLength: 36
+  financeable:
+    type: boolean
+    description: true if this object can be financed by the customer
+  createdAt:
+    type: string
+  comment:
+    type: string
+    description: an optional comment that can be given about this evaluation
+  financeableSum:
+    type: number
+    description: the sum without cents that this customer can finance
+  _links:
+    type: array
+    items:
+      type: object
+      properties:
+        self:
+          $ref: ./hateoas-link.v1.yaml
+        transition:
+          $ref: ./hateoas-link.v1.yaml
+required:
+  - id
+  - createdAt
+description: An agent may rate the financial ability of a customer e.g. to evaluate whether that customer can afford a house of a certain price
+x-tags:
+  - FinanceFeedback

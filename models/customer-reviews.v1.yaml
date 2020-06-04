@@ -1,4 +1,4 @@
-title: customer-reviews.v1
+title: Customer Reviews
 type: object
 properties:
   _embedded:
@@ -39,3 +39,5 @@ properties:
       - number
 required:
   - _links
+x-tags:
+  - CustomerReview

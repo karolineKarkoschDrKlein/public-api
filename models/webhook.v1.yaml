@@ -1,0 +1,81 @@
+title: Webhook
+type: object
+description: "When a webhhok was created and a change happens to the configured resource (e.g. a new office) then a POST is sent to the targetUrl (if configured with basicAuth and/or signature headers). The payload that is sent in this POST can be found in the 'WebhookPayload'-Model"
+x-tags:
+  - Webhook
+properties:
+  id:
+    type: string
+    maxLength: 36
+  name:
+    type: string
+    description: can be used to identify webhooks
+    maxLength: 255
+  targetUrl:
+    type: string
+    description: the url to which the webhook is called
+    maxLength: 255
+  resource:
+    type: string
+    example: office.v1
+    description: the ressource that this webhook subscribes to
+    maxLength: 255
+  event:
+    type: string
+    enum:
+      - created
+      - updated
+      - deleted
+      - all
+    maxLength: 255
+    description: the actions on which this webhook should be triggered
+  createdAt:
+    type: string
+    description: ISO-String with the time when the webhook was created
+    maxLength: 30
+  version:
+    type: string
+    example: v1
+    description: the version of this webhook
+    maxLength: 10
+  basicAuthConfigured:
+    type: boolean
+    description: true if basicAuth authentication was configured
+  secretConfigured:
+    type: boolean
+    description: true if a secret was configured
+  delivered:
+    type: number
+    description: number of events that were successfully delivered
+  queued:
+    type: number
+    description: number of events that could not yet be delivered and are being retried
+  status:
+    type: string
+    enum:
+      - OK
+      - FAILED
+    description: if the webhook is failed then it stops delivering because there were too many failed dispatch attempts
+    maxLength: 10
+  _embedded:
+    type: object
+    properties:
+      company:
+        $ref: ./company.v1.yaml
+  _links:
+    type: object
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
+required:
+  - id
+  - targetUrl
+  - resource
+  - event
+  - createdAt
+  - version
+  - basicAuthConfigured
+  - secretConfigured
+  - delivered
+  - queued
+  - status

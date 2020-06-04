@@ -1,0 +1,20 @@
+title: Page
+type: object
+properties:
+  totalPages:
+    type: number
+    description: the total number of pages
+  totalElements:
+    type: number
+    description: the total number of elements
+  size:
+    type: number
+    description: how many elements are in this page
+  number:
+    type: number
+    description: the number of this page
+required:
+  - totalPages
+  - totalElements
+  - size
+  - number

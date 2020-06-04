@@ -611,6 +611,25 @@ paths:
                 $ref: ../models/customer-review.v1.yaml
       operationId: get-v1-agent-reviews-reviewId
       description: Get a single customerReview by its id
+  /v1/webhooks:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-webhooks
+      description: Returns all webhooks from this company
+  '/v1/webhooks/{webhookId}':
+    parameters:
+      - schema:
+          type: string
+        name: webhookId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-webhooks-webhookId
 components:
   schemas: {}
   securitySchemes:

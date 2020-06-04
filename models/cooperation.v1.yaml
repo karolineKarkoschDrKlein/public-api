@@ -16,3 +16,5 @@ properties:
     type: string
 required:
   - _embedded
+x-tags:
+  - Cooperations

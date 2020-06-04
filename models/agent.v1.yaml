@@ -23,3 +23,5 @@ properties:
         $ref: ./hateoas-link.v1.yaml
 required:
   - id
+x-tags:
+  - Agents

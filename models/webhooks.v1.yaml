@@ -1,8 +1,7 @@
-title: Agents
+title: Webhooks
 type: object
-description: List of agents
-x-examples:
-  example-1: {}
+x-tags:
+  - Webhook
 properties:
   page:
     $ref: ./page.v1.yaml
@@ -11,11 +10,7 @@ properties:
   _embedded:
     type: object
     properties:
-      agents:
+      webhooks:
         type: array
         items:
-          $ref: ./agent.v1.yaml
-required:
-  - page
-x-tags:
-  - Agents
+          $ref: ./webhook.v1.yaml

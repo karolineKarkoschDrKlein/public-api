@@ -1,8 +1,5 @@
-title: Agents
+title: Finance Feedbacks
 type: object
-description: List of agents
-x-examples:
-  example-1: {}
 properties:
   page:
     $ref: ./page.v1.yaml
@@ -11,11 +8,12 @@ properties:
   _embedded:
     type: object
     properties:
-      agents:
+      financeFeedbacks:
         type: array
         items:
-          $ref: ./agent.v1.yaml
+          $ref: ./finance-feedback.v1.yaml
 required:
   - page
+  - _links
 x-tags:
-  - Agents
+  - FinanceFeedback

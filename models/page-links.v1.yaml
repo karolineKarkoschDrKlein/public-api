@@ -1,0 +1,15 @@
+title: Page Links
+type: object
+properties:
+  self:
+    $ref: ./hateoas-link.v1.yaml
+  next:
+    $ref: ./hateoas-link.v1.yaml
+  first:
+    $ref: ./hateoas-link.v1.yaml
+  last:
+    $ref: ./hateoas-link.v1.yaml
+  prev:
+    $ref: ./hateoas-link.v1.yaml
+required:
+  - self

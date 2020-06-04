@@ -27,3 +27,5 @@ required:
   - lastName
   - email
   - _links
+x-tags:
+  - Employees

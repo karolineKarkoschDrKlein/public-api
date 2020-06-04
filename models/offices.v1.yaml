@@ -55,3 +55,5 @@ properties:
 required:
   - _links
   - page
+x-tags:
+  - Offices

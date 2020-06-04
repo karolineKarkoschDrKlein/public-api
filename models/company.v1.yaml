@@ -41,3 +41,5 @@ required:
   - name
   - slugs
   - _links
+x-tags:
+  - Company

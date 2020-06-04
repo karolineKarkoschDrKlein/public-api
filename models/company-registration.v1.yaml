@@ -47,3 +47,5 @@ required:
   - status
   - message
   - _links
+x-tags:
+  - CompanyRegistration

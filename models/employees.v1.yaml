@@ -40,3 +40,5 @@ properties:
           $ref: ./employee.v1.yaml
 required:
   - _links
+x-tags:
+  - Employees

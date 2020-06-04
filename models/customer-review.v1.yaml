@@ -57,3 +57,5 @@ required:
   - id
   - _embedded
   - _links
+x-tags:
+  - CustomerReview

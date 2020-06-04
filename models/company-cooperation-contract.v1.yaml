@@ -25,3 +25,5 @@ required:
   - id
   - valid
   - createdAt
+x-tags:
+  - CompanyCooperation

@@ -1,0 +1,31 @@
+title: Customer Transition
+type: object
+x-tags:
+  - CustomerTransition
+properties:
+  id:
+    type: string
+  _embedded:
+    type: object
+    required:
+      - providerAgent
+    properties:
+      providerAgent:
+        $ref: ./agent.v1.yaml
+      consumerAgent:
+        $ref: ./agent.v1.yaml
+  _links:
+    type: object
+    required:
+      - self
+      - financeFeedbacks
+    properties:
+      self:
+        $ref: ./hateoas-link.v1.yaml
+      financeFeedbacks:
+        $ref: ./hateoas-link.v1.yaml
+required:
+  - id
+  - _embedded
+  - _links
+description: A customer transition is a customer that is transitioned from one agent to another. Both agent may share information about that customer via the api (e.g. by adding finance-feedbacks)

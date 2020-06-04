@@ -1,0 +1,68 @@
+title: WebhookPayload
+type: object
+x-tags:
+  - Webhook
+description: This payload will be sent to the targetUrl of a webhook when a resource changes
+properties:
+  resource:
+    type: string
+    example: office.v1
+    maxLength: 255
+    description: the same resource as in the webhook
+  event:
+    type: string
+    enum:
+      - created
+      - updated
+      - deleted
+    description: the action that happened
+  occuredOn:
+    type: string
+    description: the timestamp at which this event happened
+    maxLength: 10
+    format: date-time
+  subject:
+    type: string
+    description: the id of the resource that triggered this webhook (e.g. the id of the office if the resource is office.v1)
+    maxLength: 36
+  triggeredByUserId:
+    type: string
+    description: the id of the user that triggered this action
+    maxLength: 36
+  triggeredByCompanyId:
+    type: string
+    description: the id of the company who triggerd this action
+    maxLength: 36
+  eventSource:
+    type: string
+    enum:
+      - API
+      - PLATFORM
+    description: "'API' if this action was triggered from an API-call on this api. Otherwise 'PLATFORM'"
+  transactionId:
+    type: string
+    description: "on any endpoint on this api you can set the header 'X-TRANSACTION-ID' and the value from that header will be set in this webhook if your action triggers a webhook"
+    maxLength: 36
+  version:
+    type: string
+    example: v1
+    description: ''
+  webhookId:
+    type: string
+    maxLength: 36
+  companyId:
+    type: string
+    description: the company to which this payload is delivered
+    maxLength: 36
+  data:
+    type: object
+    description: this contains a json with the data of the changed resource. It will have the same format as the GET-endpoint of that resource
+required:
+  - resource
+  - event
+  - occuredOn
+  - subject
+  - eventSource
+  - version
+  - webhookId
+  - companyId
