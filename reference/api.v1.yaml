@@ -566,7 +566,7 @@ paths:
                     - RATENKREDIT
                     - GELDANLAGE
                     - VERSICHERUNG
-                recomendation:
+                recommendation:
                   type: boolean
                   description: true if this customer would recommend the services
                 consultingOccured:
