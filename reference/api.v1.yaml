@@ -917,7 +917,7 @@ paths:
                     type: object
                     description: Once the task has finished this will contain the link to the created office
                     properties:
-                      cooperationContract:
+                      office:
                         $ref: ../models/hateoas-link.v1.yaml
                 required:
                   - id
