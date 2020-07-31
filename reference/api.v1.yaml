@@ -63,17 +63,13 @@ paths:
       summary: Create a new Agent
       operationId: post-v1-agents
       responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: ../models/agent.v1.yaml
+        '202':
+          description: Accepted
           headers:
             LOCATION:
               schema:
                 type: string
-              description: Link to the created agent
+              description: Link to /agents/tasks which needs to be polled until the agent was created
       description: An agent can be created with an existing employee and an existing office
       requestBody:
         content:
@@ -140,17 +136,13 @@ paths:
       summary: Create a Company Cooperation Contract
       operationId: post-v1-company-cooperation-contracts
       responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: ../models/company-cooperation-contract.v1.yaml
+        '202':
+          description: Accepted
           headers:
             LOCATION:
               schema:
                 type: string
-              description: Link to the created CompanyCooperationContract
+              description: Link to /v1/companc-cooperation-contracts/tasks which needs to be polled until the contract was created
       requestBody:
         content:
           application/json:
@@ -198,6 +190,7 @@ paths:
       responses:
         '200':
           description: OK
+          headers: {}
           content:
             application/json:
               schema:
@@ -208,17 +201,13 @@ paths:
       summary: Create a new office
       operationId: post-v1-offices
       responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: ../models/office.v1.yaml
+        '202':
+          description: Accepted
           headers:
             LOCATION:
               schema:
                 type: string
-              description: Link to the created office
+              description: Link to /v1/companc-cooperation-contracts/tasks which needs to be polled until the office was created
       requestBody:
         content:
           application/json:
@@ -453,31 +442,6 @@ paths:
                   - status
                   - message
                   - id
-        '303':
-          description: See Other
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    description: 'status of the employee-creation '
-                    enum:
-                      - PROCESSING
-                      - COMPLETED
-                  message:
-                    type: string
-                    description: human-readable explanation of the current status
-                    maxLength: 255
-                required:
-                  - status
-                  - message
-          headers:
-            LOCATION:
-              schema:
-                type: string
-              description: Link to the created employee
       operationId: get-v1-employees-tasks-taskId
   '/v1/company-cooperation-contracts/{contractId}':
     parameters:
@@ -509,8 +473,6 @@ paths:
   /v1/customer-reviews:
     get:
       summary: Get customer reviews
-      tags:
-        - agentReview
       responses:
         '200':
           description: OK
@@ -520,6 +482,8 @@ paths:
                 $ref: ../models/customer-reviews.v1.yaml
       operationId: get-v1-agent-reviews
       description: Get all reviews of this company
+      tags:
+        - CustomerReview
     post:
       summary: Create a customer review
       operationId: post-v1-agent-reviews
@@ -530,7 +494,7 @@ paths:
             LOCATION:
               schema:
                 type: string
-              description: Link to the review that will be created
+              description: Link to the task-resource that needs to be polled until the review was created
       tags:
         - agentReview
       requestBody:
@@ -600,8 +564,6 @@ paths:
         required: true
     get:
       summary: Get a customer review
-      tags:
-        - agentReview
       responses:
         '200':
           description: OK
@@ -611,6 +573,8 @@ paths:
                 $ref: ../models/customer-review.v1.yaml
       operationId: get-v1-agent-reviews-reviewId
       description: Get a single customerReview by its id
+      tags:
+        - CustomerReview
   /v1/webhooks:
     get:
       summary: Get Webhooks
@@ -759,7 +723,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Get a finance feedbac
+      summary: Get a finance feedback
       tags:
         - FinanceFeedback
       responses:
@@ -770,6 +734,207 @@ paths:
               schema:
                 $ref: ../models/finance-feedback.v1.yaml
       operationId: get-v1-customer-transitions-transitionId-finance-feedbacks-feedbackId
+  '/v1/customer-reviews/tasks/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: Review Tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: this contains a human-readable description of the status-code
+                  _links:
+                    type: object
+                    description: Once the task has finished this will contain the link to the created review
+                    properties:
+                      customerReview:
+                        $ref: ../models/hateoas-link.v1.yaml
+                required:
+                  - id
+                  - status
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Once the task is finished this will contain a link to the created review
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-v1-customer-reviews-tasks-taskId
+      tags:
+        - CustomerReview
+  '/v1/agents/tasks/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: Agent tasks
+      tags:
+        - Agents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: this contains a human-readable description of the status-code
+                  _links:
+                    type: object
+                    description: Once the task has finished this will contain the link to the created agent
+                    properties:
+                      agent:
+                        $ref: ../models/hateoas-link.v1.yaml
+                required:
+                  - id
+                  - status
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Once the task is finished this will contain a link to the created agent
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-v1-agents-tasks-taskId
+  '/v1/company-cooperation-contracts/tasks/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: CompanyCooperationContract Task
+      tags:
+        - CompanyCooperation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: this contains a human-readable description of the status-code
+                  _links:
+                    type: object
+                    description: Once the task has finished this will contain the link to the created agent
+                    properties:
+                      cooperationContract:
+                        $ref: ../models/hateoas-link.v1.yaml
+                required:
+                  - id
+                  - status
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Once the task is finished this will contain a link to the created cooperationcontract
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-v1-company-cooperation-contracts-tasks-taskId
+  '/v1/offices/tasks/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: Offices tasks
+      tags:
+        - Offices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - COMPLETED
+                  message:
+                    type: string
+                    description: this contains a human-readable description of the status-code
+                  _links:
+                    type: object
+                    description: Once the task has finished this will contain the link to the created office
+                    properties:
+                      cooperationContract:
+                        $ref: ../models/hateoas-link.v1.yaml
+                required:
+                  - id
+                  - status
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Once the task is finished this will contain a link to the created office
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: get-v1-offices-tasks-taskId
+      description: ''
 components:
   schemas: {}
   securitySchemes:
