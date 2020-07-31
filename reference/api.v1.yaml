@@ -438,6 +438,12 @@ paths:
                   id:
                     type: string
                     maxLength: 36
+                  _links:
+                    type: object
+                    description: this will contain the link to the created employee once it was created
+                    properties:
+                      employee:
+                        $ref: ../models/hateoas-link.v1.yaml
                 required:
                   - status
                   - message
