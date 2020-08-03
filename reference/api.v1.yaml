@@ -142,7 +142,7 @@ paths:
             LOCATION:
               schema:
                 type: string
-              description: Link to /v1/companc-cooperation-contracts/tasks which needs to be polled until the contract was created
+              description: Link to /v1/company-cooperation-contracts/tasks which needs to be polled until the contract was created
       requestBody:
         content:
           application/json:
@@ -207,7 +207,7 @@ paths:
             LOCATION:
               schema:
                 type: string
-              description: Link to /v1/companc-cooperation-contracts/tasks which needs to be polled until the office was created
+              description: Link to /v1/offices/tasks which needs to be polled until the office was created
       requestBody:
         content:
           application/json:
