@@ -1,12 +1,14 @@
 title: Company Registration
 type: object
 description: 'To create a company, a new company registration needs to be created. When the creation of the company and the initial set of credentials is finished, the company is embedded and the credentials can be found in the fields clientId and secret'
+x-tags:
+  - CompanyRegistration
 properties:
   id:
     type: string
   status:
     type: string
-    description: 'the status of the registration. First it is created, then the corresponding company is created, then the Credentials are created which makes it FINISHED and 10min later it expires and the credentials are deleted'
+    description: 'the status of the registration. First it is created, then the corresponding company is created, then the Credentials are created which makes it COMPLETED and 10min later it expires and the credentials are deleted'
     enum:
       - PENDING
       - COMPANY_CREATED
@@ -47,5 +49,3 @@ required:
   - status
   - message
   - _links
-x-tags:
-  - CompanyRegistration
