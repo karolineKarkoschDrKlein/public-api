@@ -509,8 +509,8 @@ paths:
       summary: Create a customer review
       operationId: post-v1-agent-reviews
       responses:
-        '201':
-          description: Created
+        '202':
+          description: Accepted
           headers:
             LOCATION:
               schema:
