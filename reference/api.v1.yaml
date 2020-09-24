@@ -20,7 +20,7 @@ info:
   contact:
     name: Timo Lange
     email: das-produkt@drklein.de
-  termsOfService: Terms of Service
+  termsOfService: 'https://www.drklein.de/impressum.html'
 servers:
   - url: 'https://api.drklein-plattform.de/{companySlug}'
     description: PROD
@@ -36,7 +36,13 @@ paths:
         required: true
     get:
       summary: Find all partner agents
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agents.v1.yaml
       operationId: get-v1-agents-agentId-partner-agents
       description: Show all agents that are cooperating with this agent
       requestBody:
@@ -51,7 +57,13 @@ paths:
       summary: Find all agents
       tags:
         - Agents
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agents.v1.yaml
       operationId: get-v1-agents
       description: Displays all agents
       requestBody:
@@ -70,6 +82,11 @@ paths:
               schema:
                 type: string
               description: Link to /agents/tasks which needs to be polled until the agent was created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/agent.v1.yaml
+              examples: {}
       description: An agent can be created with an existing employee and an existing office
       requestBody:
         content:
@@ -88,8 +105,6 @@ paths:
               required:
                 - employeeId
                 - officeId
-            examples:
-              example-1: {}
         description: ''
       tags:
         - Agents
@@ -156,7 +171,7 @@ paths:
                 contractingCompanyId:
                   type: string
                   maxLength: 36
-                  description: "this company won't be able to delete the contract but it needs to sign it otherwise the contract stays invalid"
+                  description: this company won't be able to delete the contract but it needs to sign it otherwise the contract stays invalid
               required:
                 - creatingCompanyId
                 - contractingCompanyId
@@ -553,9 +568,7 @@ paths:
                   type: string
                   maxLength: 255
                 publiclyVisible:
-                  type:
-                    - string
-                    - boolean
+                  type: boolean
                   maxLength: 255
                   description: 'if this is set to true, it is be possible to view this review without being authenticated (e.g. to display it on a website) '
         description: ''
