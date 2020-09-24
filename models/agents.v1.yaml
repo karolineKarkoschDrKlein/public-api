@@ -1,6 +1,6 @@
 title: Agents
 type: object
-description: List of agents
+description: 'List of agents '
 x-examples:
   example-1: {}
 properties:
