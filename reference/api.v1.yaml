@@ -516,8 +516,6 @@ paths:
               schema:
                 type: string
               description: Link to the task-resource that needs to be polled until the review was created
-      tags:
-        - agentReview
       requestBody:
         content:
           application/json:
@@ -573,6 +571,8 @@ paths:
                   description: 'if this is set to true, it is be possible to view this review without being authenticated (e.g. to display it on a website) '
         description: ''
       description: Create a new review for this company
+      tags:
+        - CustomerReview
     parameters: []
   '/v1/customer-reviews/{reviewId}':
     parameters:
@@ -965,3 +965,5 @@ components:
           refreshUrl: ''
           scopes: {}
       description: Alle Aufrufe der Public Api benötigen einen gültigen OAuth Token vom ID Service der Dr.Klein Plattform.
+tags:
+  - name: CustomerReview
