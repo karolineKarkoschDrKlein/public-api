@@ -600,12 +600,17 @@ paths:
       tags:
         - Webhook
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
                 $ref: ../models/webhooks.v1.yaml
+          headers:
+            LOCATION:
+              schema:
+                type: string
+              description: Path to the newly created webhook
       operationId: get-v1-webhooks
       description: Returns all webhooks from this company
     post:
